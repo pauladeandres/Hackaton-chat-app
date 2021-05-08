@@ -32,7 +32,7 @@ export default function OpenConversation() {
       }
       sendMessage(
         selectedConversation.recipients.map(r => r.id),
-        text
+        messageObject
       )
       setText('')
   
@@ -44,7 +44,7 @@ export default function OpenConversation() {
       }
       sendMessage(
         selectedConversation.recipients.map(r => r.id),
-        text
+        messageObject
       )
       setText('')
    
@@ -55,37 +55,7 @@ export default function OpenConversation() {
     setText(e.target.files[0].name)
     setFile(e.target.files[0])
   }
-
-  function renderMessages (message, index) {
-
-    const blob = new Blob((message.body), { type: message.type })
-    const lastMessage = selectedConversation.messages.length - 1 === index
-
-    if(message.type === "file") {
-
-      return (
-        < div
-          ref={lastMessage ? setRef : null}
-          key={index}
-          className={`my-1 d-flex flex-column ${message.fromMe ? 'align-self-end align-items-end' : 'align-items-start'}`}
-        >
-          <Image fileName={message.fileName} blob={blob}/>
-        </div>
-      )
-    } else {
-        return (
-          <div
-            ref={lastMessage ? setRef : null}
-            key={index}
-            className={`my-1 d-flex flex-column ${message.fromMe ? 'align-self-end align-items-end' : 'align-items-start'}`}
-          >
-            {message.body}
-          </div>
-        )
-    }
-  }
-
-
+  
   return (
     <div className="d-flex flex-column flex-grow-1">
       <div className="flex-grow-1 overflow-auto">
