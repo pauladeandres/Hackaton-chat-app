@@ -53,6 +53,7 @@ export default function OpenConversation() {
               required
               value={text}
               onChange={e => setText(e.target.value)}
+              onKeyPress={e => e.key === "Enter" && handleSubmit(e)}
               style={{ height: '75px', resize: 'none' }}
             />
             <InputGroup.Append>
