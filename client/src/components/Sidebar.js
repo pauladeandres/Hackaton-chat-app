@@ -11,12 +11,12 @@ const CONTACTS_KEY = 'contacts'
 const FAVOURITES_KEY = 'favourites'
 
 export default function Sidebar({ id }) {
-  const [activeKey, setActiveKey] = useState(CONVERSATIONS_KEY)
-  const [modalOpen, setModalOpen] = useState(false)
-  const conversationsOpen = activeKey === CONVERSATIONS_KEY
-  
+  const [activeKey, setActiveKey] = useState(CONVERSATIONS_KEY);
+  const [modalOpen, setModalOpen] = useState(false);
+  const conversationsOpen = activeKey === CONVERSATIONS_KEY;
+
   function closeModal() {
-    setModalOpen(false)
+    setModalOpen(false);
   }
 
   return (
@@ -52,12 +52,13 @@ export default function Sidebar({ id }) {
         </Button>
       </Tab.Container>
 
-      <Modal show={modalOpen} onHide={closeModal}>
-        {conversationsOpen ?
-          <NewConversationModal closeModal={closeModal} /> :
-          <NewContactModal closeModal={closeModal} />
-        }
-      </Modal>
-    </div>
-  )
+        <Modal show={modalOpen} onHide={closeModal}>
+          {conversationsOpen ? (
+            <NewConversationModal closeModal={closeModal} />
+          ) : (
+            <NewContactModal closeModal={closeModal} />
+          )}
+        </Modal>
+      </div>
+  );
 }
