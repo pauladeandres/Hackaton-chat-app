@@ -13,7 +13,7 @@ function App() {
     <SocketProvider id={id}>
       <ContactsProvider>
         <ConversationsProvider id={id}>
-          <Dashboard id={id} />
+          <Dashboard id={id} />               
         </ConversationsProvider>
       </ContactsProvider>
     </SocketProvider>
