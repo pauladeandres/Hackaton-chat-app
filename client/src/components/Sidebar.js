@@ -3,14 +3,16 @@ import { Tab, Nav, Button, Modal } from 'react-bootstrap'
 import Conversations from './Conversations'
 import Contacts from './Contacts'
 import Favourites from './Favourites'
+import Profile from './Profile'
 import NewContactModal from './NewContactModal'
 import NewConversationModal from './NewConversationModal'
 
 const CONVERSATIONS_KEY = 'conversations'
 const CONTACTS_KEY = 'contacts'
 const FAVOURITES_KEY = 'favourites'
+const PROFILE_KEY = 'profile'
 
-export default function Sidebar({ id }) {
+export default function Sidebar({ id, username }) {
   const [activeKey, setActiveKey] = useState(CONVERSATIONS_KEY);
   const [modalOpen, setModalOpen] = useState(false);
   const conversationsOpen = activeKey === CONVERSATIONS_KEY;
@@ -20,7 +22,7 @@ export default function Sidebar({ id }) {
   }
 
   return (
-    <div style={{ width: '350px' }} className="d-flex flex-column">
+    <div style={{ width: '300px' }} className="d-flex flex-column">
       <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
         <Nav variant="tabs" className="justify-content-center">
           <Nav.Item>
@@ -32,6 +34,9 @@ export default function Sidebar({ id }) {
           <Nav.Item>
             <Nav.Link eventKey={FAVOURITES_KEY}>Favourites</Nav.Link>
           </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey={PROFILE_KEY}>My Profile</Nav.Link>
+          </Nav.Item>
         </Nav>
         <Tab.Content className="border-right overflow-auto flex-grow-1">
           <Tab.Pane eventKey={CONVERSATIONS_KEY}>
@@ -42,6 +47,9 @@ export default function Sidebar({ id }) {
           </Tab.Pane>
           <Tab.Pane eventKey={FAVOURITES_KEY}>
             <Favourites />
+          </Tab.Pane>
+          <Tab.Pane eventKey={PROFILE_KEY}>
+            <Profile username={username}/>
           </Tab.Pane>
         </Tab.Content>
         <div className="p-2 border-top border-right small">

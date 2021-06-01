@@ -8,19 +8,20 @@ import { SocketProvider } from '../contexts/SocketProvider';
 
 function App() {
   const [id, setId] = useLocalStorage('id')
+  const [username, setUsername] = useLocalStorage('username')
 
   const dashboard = (
     <SocketProvider id={id}>
       <ContactsProvider>
-        <ConversationsProvider id={id}>
-          <Dashboard id={id} />               
+        <ConversationsProvider id={id} username={username}>
+          <Dashboard id={id} username={username}/>
         </ConversationsProvider>
       </ContactsProvider>
     </SocketProvider>
   )
 
   return (
-    id ? dashboard : <Login onIdSubmit={setId} />
+    id ? dashboard : <Login onIdSubmit={setId} onUsernameSubmit={setUsername}/>
   )
 }
 
